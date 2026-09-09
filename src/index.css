@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* ── Tokens ── */
+:root {
+  --navy: #081C2C;
+  --navy-mid: #102F46;
+  --gold: #B69A62;
+  --ivory: #F5F3EE;
+  --dark: #18212B;
+  --muted: #68727C;
+  --white: #FFFFFF;
+  --border-light: rgba(8, 28, 44, 0.1);
+  --border-gold: rgba(182, 154, 98, 0.3);
+}
+
+/* Design decisions:
+   - Navy #081C2C: authority and trust expected of a legal/compliance firm
+   - Gold #B69A62: selectively used (~10%), premium signal without extravagance
+   - Ivory #F5F3EE: warm background separates ANBI from cold blue-gray SaaS defaults
+   - Manrope: humanist geometric chosen for precision + editorial authority
+   - Plus Jakarta Sans: high legibility for dense regulatory/legal body copy
+   - Sharp rectangles (0 radius): aligns with legal/institutional gravity
+*/
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--ivory);
+  color: var(--dark);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--navy-mid); border-radius: 2px; }
+
+/* ── Keyboard focus (R-32) ── */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ── Typography utilities ── */
+.font-display { font-family: 'Manrope', sans-serif; }
+.eyebrow {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.gold-line {
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Service rows ── */
+.service-row {
+  border-top: 1px solid var(--border-light);
+  transition: padding-left 0.25s ease;
+  cursor: pointer;
+}
+.service-row:last-child { border-bottom: 1px solid var(--border-light); }
+.service-row:hover { padding-left: 1.5rem; }
+.service-arrow { transition: transform 0.25s ease, color 0.25s ease; }
+
+/* ── Responsive layout classes ── */
+
+/* Shared two-column grid */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* Footer grid — 4 columns */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+}
+
+/* Industry columns */
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Process steps */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+/* Insights 2+1 */
+.insights-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2px;
+  background: var(--border-light);
+}
+
+/* Blog featured article */
+.featured-article {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+}
+
+/* Blog article lead row */
+.blog-lead-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Blog 3-col grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Article page layout */
+.article-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* Related articles grid */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+/* Desktop nav visible; hamburger hidden */
+.desktop-nav { display: flex !important; }
+.mobile-hamburger { display: none !important; }
+
+/* ── Mobile responsive (max 900px) ── */
+@media (max-width: 900px) {
+  .hero-section { grid-template-columns: 1fr !important; }
+  .hero-right { display: none !important; }
+  .hero-left { padding: 9rem 1.5rem 5rem !important; }
+
+  .two-col { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+
+  .industry-grid { grid-template-columns: 1fr 1fr !important; }
+
+  .process-grid { grid-template-columns: 1fr 1fr !important; }
+  .process-connector { display: none !important; }
+
+  .insights-grid { grid-template-columns: 1fr !important; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 2.5rem !important; }
+
+  .service-row { grid-template-columns: 48px 1fr auto !important; }
+  .service-desc { display: none !important; }
+
+  .featured-article { grid-template-columns: 1fr !important; }
+
+  .blog-lead-row { grid-template-columns: 1fr !important; }
+
+  .blog-grid { grid-template-columns: 1fr 1fr !important; }
+
+  .article-layout { grid-template-columns: 1fr !important; }
+  .article-sidebar { order: -1; }
+
+  .related-grid { grid-template-columns: 1fr !important; }
+
+  .desktop-nav { display: none !important; }
+  .mobile-hamburger { display: flex !important; }
+}
+
+@media (max-width: 560px) {
+  .industry-grid { grid-template-columns: 1fr 1fr !important; }
+  .process-grid { grid-template-columns: 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr !important; }
+  .blog-grid { grid-template-columns: 1fr !important; }
+}
+
+html { scroll-behavior: smooth; }
