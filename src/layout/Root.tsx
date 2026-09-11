@@ -26,6 +26,14 @@ function Navbar() {
 
   const forceSolidNav = !isHome || scrolled;
 
+  // DEBUG SEMENTARA — hapus blok ini setelah masalah navbar selesai
+  const [debugScrollY, setDebugScrollY] = useState(0);
+  useEffect(() => {
+    const onDebugScroll = () => setDebugScrollY(window.scrollY);
+    window.addEventListener("scroll", onDebugScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onDebugScroll);
+  }, []);
+
   function handleAnchorNav(hash: string) {
     if (isHome) {
       const el = document.getElementById(hash);
@@ -69,6 +77,24 @@ function Navbar() {
         boxShadow: forceSolidNav ? "0 1px 20px rgba(8,28,44,0.06)" : "none",
       }}
     >
+      {/* DEBUG SEMENTARA — hapus div ini setelah masalah navbar selesai */}
+      <div
+        style={{
+          position: "fixed",
+          top: "80px",
+          right: "10px",
+          background: "red",
+          color: "white",
+          padding: "8px 12px",
+          fontSize: "14px",
+          fontFamily: "monospace",
+          zIndex: 9999,
+          borderRadius: "4px",
+        }}
+      >
+        scrollY: {debugScrollY} | scrolled: {String(scrolled)} | isHome: {String(isHome)}
+      </div>
+
       <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 2.5rem" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "72px" }}>
           {/* Logo */}
