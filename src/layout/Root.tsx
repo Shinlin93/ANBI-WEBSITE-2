@@ -13,10 +13,16 @@ function Navbar() {
   const isHome = location.pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const getScrollY = () =>
+      window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const onScroll = () => setScrolled(getScrollY() > 10);
     onScroll(); // set langsung saat mount, untuk jaga-jaga jika halaman dibuka sudah dalam kondisi scroll
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    document.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   // Close menu on route change
@@ -29,9 +35,14 @@ function Navbar() {
   // DEBUG SEMENTARA — hapus blok ini setelah masalah navbar selesai
   const [debugScrollY, setDebugScrollY] = useState(0);
   useEffect(() => {
-    const onDebugScroll = () => setDebugScrollY(window.scrollY);
+    const onDebugScroll = () =>
+      setDebugScrollY(window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0);
     window.addEventListener("scroll", onDebugScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onDebugScroll);
+    document.addEventListener("scroll", onDebugScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onDebugScroll);
+      document.removeEventListener("scroll", onDebugScroll);
+    };
   }, []);
 
   function handleAnchorNav(hash: string) {
