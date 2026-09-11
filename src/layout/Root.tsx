@@ -13,7 +13,8 @@ function Navbar() {
   const isHome = location.pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll(); // set langsung saat mount, untuk jaga-jaga jika halaman dibuka sudah dalam kondisi scroll
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
