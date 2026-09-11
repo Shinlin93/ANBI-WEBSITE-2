@@ -1,10 +1,11 @@
 {
-  "description": "This web application streamlines the design process by allowing users to create custom designs based on provided briefs and images, enhancing creativity and efficiency.",
-  "robots": {
-    "index": false
+  "title": "Anbi Consulting",
+  "description": "Anbi Consulting",
+  "language": "id",
+  "icons": {
+    "icon": "/favicon.png"
   },
-  "accessibility": {
-    "addBypassLinks": false,
-    "ignoreReducedMotion": false
+  "openGraph": {
+    "image": "/og-image.png"
   }
 }
